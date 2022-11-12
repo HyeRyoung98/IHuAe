@@ -20,6 +20,8 @@
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="colorAccent">@color/main_dark_purple_blue_6671BF</item>
+        <item name="android:textColor">@color/font_main_4A4A4A</item>
+        <!--  -->
 
         <item name="android:textViewStyle">@style/customTextViewFontStyle</item>
         <item name="android:buttonStyle">@style/customButtonFontStyle</item>
