@@ -27,7 +27,32 @@
             android:textSize="14dp" />
         <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <include
+                android:layout_width="65dp"
+                android:layout_height="76dp"
+                layout="@layout/item_emotion_icon"/>
+            <include
+                android:layout_width="65dp"
+                android:layout_height="76dp"
+                layout="@layout/item_emotion_icon"/>
+            <include
+                android:layout_width="65dp"
+                android:layout_height="76dp"
+                layout="@layout/item_emotion_icon"/>
+            <include
+                android:layout_width="65dp"
+                android:layout_height="76dp"
+                layout="@layout/item_emotion_icon"/>
+            <include
+                android:layout_width="65dp"
+                android:layout_height="76dp"
+                layout="@layout/item_emotion_icon"/>
+            <include
+                android:layout_width="65dp"
+                android:layout_height="76dp"
+                layout="@layout/item_emotion_icon"/>
 
         </RadioGroup>
 
