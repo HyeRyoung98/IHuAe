@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="25dp"
             android:layout_gravity="center_horizontal"
             android:text="오늘은 어떤 기분이 드나요?"
             android:textSize="14dp" />
