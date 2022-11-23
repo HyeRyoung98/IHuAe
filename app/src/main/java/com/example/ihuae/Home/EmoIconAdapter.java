@@ -13,7 +13,7 @@ import com.example.ihuae.databinding.ItemEmotionIconBinding;
 public class EmoIconAdapter extends RecyclerView.Adapter<EmoIconAdapter.itemVH> {
     private Context mContext;
     public OnIconClickListener onIconClickListener;
-    public int sel_position = 0;
+    public int sel_position = -1;
     public interface OnIconClickListener{
         void onClick(int position);
     }
@@ -39,12 +39,12 @@ public class EmoIconAdapter extends RecyclerView.Adapter<EmoIconAdapter.itemVH> 
     public void onBindViewHolder(@NonNull itemVH holder, int position) {
         holder.binding.ivEmo.setImageDrawable(mContext.getDrawable(emoImg[position]));
         holder.binding.tvEmo.setText(emoTxt[position]);
-        if(sel_position-1 != position){
-            holder.binding.btnBgEmo.setChecked(false);
-        }
+        holder.binding.btnBgEmo.setChecked(sel_position == position);
+
         holder.binding.btnBgEmo.setOnClickListener(view -> {
+            sel_position = holder.getLayoutPosition();
             if(onIconClickListener != null) onIconClickListener.onClick(holder.getLayoutPosition());
-            sel_position = holder.getLayoutPosition()+1;
+
         });
     }
 

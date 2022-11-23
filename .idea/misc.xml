@@ -17,8 +17,9 @@
         <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/layout/fragment_calendar.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/layout/fragment_chat.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/layout/fragment_diary.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/layout/item_emotion_icon.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/layout/item_guide_card.xml" value="0.1875" />
       </map>
     </option>
   </component>

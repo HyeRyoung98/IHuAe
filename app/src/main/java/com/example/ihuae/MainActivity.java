@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         binding.viewPager2.setAdapter(adapter);
         binding.viewPager2.setOffscreenPageLimit(4);
 
+        binding.tabLayout.setTabRippleColor(null);
         new TabLayoutMediator(binding.tabLayout, binding.viewPager2, true, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(TabLayout.Tab tab, int position) {

@@ -3,6 +3,7 @@ package com.example.ihuae.Home;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import androidx.annotation.NonNull;
@@ -16,7 +17,7 @@ public class WriteEmoDialog extends Dialog {
     private EmoIconAdapter adapter;
 
     private String content = "";
-    private int status = 0;
+    private int status = -1;
 
     private Context mContext;
 
@@ -39,11 +40,7 @@ public class WriteEmoDialog extends Dialog {
         this.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         this.getWindow().setGravity(Gravity.CENTER); // 가운데 위치하도록
 
-        init();
         eventHandler();
-    }
-
-    private void init(){
     }
 
     private void eventHandler(){
@@ -51,14 +48,15 @@ public class WriteEmoDialog extends Dialog {
             dismiss();
         });
         adapter = new EmoIconAdapter(mContext);
+        adapter.sel_position = status;
         binding.emoRecycler.setLayoutManager(new GridLayoutManager(mContext, 3));
         binding.emoRecycler.setAdapter(adapter);
-        adapter.sel_position = status;
+
         binding.etEmo.setText(content);
         adapter.setOnIconClickListener(new EmoIconAdapter.OnIconClickListener() {
             @Override
             public void onClick(int position) {
-                status = position+1;
+                status = adapter.sel_position;
                 adapter.notifyDataSetChanged();
             }
         });
