@@ -3,14 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/drawable/bg_10.xml" value="0.2525" />
         <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/drawable/bg_15_8996f3.xml" value="0.2685" />
+        <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/drawable/bg_5_white_8291e6.xml" value="0.1635" />
         <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/drawable/bg_selected_emotion_icon.xml" value="0.272" />
         <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/drawable/bg_under_15_white.xml" value="0.2685" />
         <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/drawable/bg_under_round_15.xml" value="0.3005" />
+        <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/drawable/selector_emotion_icon.xml" value="0.2525" />
         <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/font/app_font.xml" value="0.3963541666666667" />
         <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/font/font_custom.xml" value="0.3921875" />
         <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/layout/dialog_write_emotion.xml" value="0.5" />
+        <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/layout/dialog_write_emotion.xml" value="0.33" />
         <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/layout/fragment_calendar.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/layout/fragment_chat.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/khr/AndroidStudioProjects/IHuAe/app/src/main/res/layout/fragment_diary.xml" value="0.36614583333333334" />

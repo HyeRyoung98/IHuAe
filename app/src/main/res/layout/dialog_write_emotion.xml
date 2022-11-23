@@ -8,13 +8,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="10dp"
-        android:paddingHorizontal="9dp"
-        android:orientation="vertical">
+        android:paddingTop="10dp"
+        android:paddingBottom="21dp"
+        android:orientation="vertical"
+        android:clipToPadding="false">
         <ImageView
             android:id="@+id/btnCancel"
             android:layout_width="37dp"
             android:layout_height="38dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginBottom="11dp"
             android:padding="10dp"
             android:src="@drawable/ic_cancel"/>
@@ -25,36 +27,36 @@
             android:layout_gravity="center_horizontal"
             android:text="오늘은 어떤 기분이 드나요?"
             android:textSize="14dp" />
-        <RadioGroup
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/emoRecycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <include
-                android:layout_width="65dp"
-                android:layout_height="76dp"
-                layout="@layout/item_emotion_icon"/>
-            <include
-                android:layout_width="65dp"
-                android:layout_height="76dp"
-                layout="@layout/item_emotion_icon"/>
-            <include
-                android:layout_width="65dp"
-                android:layout_height="76dp"
-                layout="@layout/item_emotion_icon"/>
-            <include
-                android:layout_width="65dp"
-                android:layout_height="76dp"
-                layout="@layout/item_emotion_icon"/>
-            <include
-                android:layout_width="65dp"
-                android:layout_height="76dp"
-                layout="@layout/item_emotion_icon"/>
-            <include
-                android:layout_width="65dp"
-                android:layout_height="76dp"
-                layout="@layout/item_emotion_icon"/>
-
-        </RadioGroup>
-
+            android:layout_marginBottom="26dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"/>
+        <EditText
+            android:id="@+id/etEmo"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="23dp"
+            android:paddingHorizontal="10dp"
+            android:background="@drawable/bg_10"
+            android:hint="추가로 느끼는 감정을 작성해보세요"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:textSize="14dp" />
+        <TextView
+            android:id="@+id/btnReg"
+            android:layout_width="82dp"
+            android:layout_height="27dp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:translationZ="3dp"
+            android:background="@drawable/bg_5_white_8291e6"
+            android:text="선택 완료"
+            android:textColor="@color/main_purple_blue2_8291E6"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:textSize="12dp"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
