@@ -12,7 +12,11 @@
     <color name="main_purple_blue1_8996F3">#FF8996F3</color>
     <color name="main_purple_blue2_8291E6">#FF8291E6</color>
     <color name="main_dark_purple_blue_6671BF">#FF6671BF</color>
+    <color name="background_gray_E5E5E5">#FFE5E5E5</color>
+    <color name="background_purble_D8E0F3">#FFD8E0F3</color>
 
     <color name="font_main_4A4A4A">#FF4A4A4A</color>
     <color name="font_gray_B3B3B3">#FFB3B3B3</color>
+    <color name="font_gray_A8A8A8">#FFA8A8A8</color>
+    <color name="font_chat_F8FAFF">#FFF8FAFF</color>
 </resources>

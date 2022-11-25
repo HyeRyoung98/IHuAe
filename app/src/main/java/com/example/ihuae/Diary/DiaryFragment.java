@@ -19,6 +19,12 @@ public class DiaryFragment extends Fragment {
     @Override
     public void onViewCreated( View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        init();
+    }
+
+    private void init(){
+        binding.toolbar.tvTile.setText("기록");
     }
 
     @Override

@@ -3,5 +3,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_fragment"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/background_gray_E5E5E5">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"/>
+        <RelativeLayout
+            android:id="@+id/guideLayout"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/white"
+            android:paddingTop="16dp"
+            android:paddingBottom="17dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="4dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="이 곳은 충동적인 감정을 억제하기 위한 곳입니다.\n상대방에게 하고 싶은 말이 있다면, 이 곳에 써주세요.\n하루가 지나면, 당신의 말들은 사라집니다."
+                android:textSize="11dp"
+                android:lineSpacingExtra="3dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                android:textColor="@color/font_gray_A8A8A8"/>
+            <ImageView
+                android:id="@+id/btnExpand"
+                android:layout_width="36dp"
+                android:layout_height="32dp"
+                android:layout_alignParentRight="true"
+                android:padding="10dp"
+                android:layout_marginTop="-10dp"
+                android:layout_marginBottom="-10dp"
+                android:src="@drawable/btn_expand"/>
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="11dp"
+        android:background="@color/background_purble_D8E0F3">
+        <EditText
+            android:id="@+id/etChat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_20_f8faff"
+            android:singleLine="true"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:textSize="16dp"
+            android:maxLength="800"/>
+    </RelativeLayout>
 
 </LinearLayout>
