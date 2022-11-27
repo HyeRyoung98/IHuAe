@@ -2,9 +2,89 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/background_gray_f6f8fd">
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar_fragment"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="6dp"
+        android:paddingTop="11dp"
+        android:paddingBottom="15dp"
+        android:background="@color/white"
+        android:translationZ="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="16dp"
+            android:text="D+DAY"
+            android:textColor="@color/font_main_4A4A4A"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dDayRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="27dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="오늘의 문답"
+            android:textColor="@color/font_main_4A4A4A"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:textSize="14dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="62dp">
+                <TextView
+                    android:id="@+id/tvQesNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="@font/bm_hanna"
+                    android:text="Q.1"
+                    android:textSize="16dp"
+                    android:textColor="#C5A0D9"/>
+                <TextView
+                    android:id="@+id/tvQes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:text="니란ㅇ리ㅏㄴㅇ린알리ㅏ니알ㄴ아ㅣ럴ㄴ아ㅣ러"
+                    android:textColor="#C5A0D9"
+                    android:textSize="16dp"
+                    android:fontFamily="@font/spoqa_han_sans_neo_medium"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:text="기록하기"
+                android:textSize="12dp"
+                android:textColor="#CAA9DD"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
 
 </LinearLayout>

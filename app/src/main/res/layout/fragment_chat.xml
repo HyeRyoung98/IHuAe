@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/background_gray_E5E5E5">
+        android:background="@color/background_gray_f6f8fd">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/chatRecycler"
             android:layout_width="match_parent"
@@ -61,5 +61,4 @@
             android:textSize="16dp"
             android:maxLength="800"/>
     </RelativeLayout>
-
 </LinearLayout>
