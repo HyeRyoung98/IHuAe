@@ -16,7 +16,7 @@
         android:paddingTop="11dp"
         android:paddingBottom="15dp"
         android:background="@color/white"
-        android:translationZ="10dp">
+        android:translationZ="4dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:background="@drawable/bg_today_qes_gradient_purple"
-            android:translationZ="10dp">
+            android:translationZ="4dp">
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"

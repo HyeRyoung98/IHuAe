@@ -3,8 +3,92 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar_fragment"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="9dp"
+        android:translationZ="4dp"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/tvTile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/font_main_4A4A4A"
+            android:textSize="16dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="28dp"
+        android:orientation="vertical"
+        android:background="@drawable/bg_23_white"
+        android:translationZ="4dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="60dp">
+            <ImageView
+                android:id="@+id/btnCalLeft"
+                android:layout_width="32dp"
+                android:layout_height="38dp"
+                android:padding="10dp"
+                android:src="@drawable/btn_cal_left"/>
+            <TextView
+                android:id="@+id/tvMonth"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="4월"
+                android:textColor="@color/font_main_4A4A4A"
+                android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                android:textSize="20dp"
+                />
+            <ImageView
+                android:id="@+id/btnCalRight"
+                android:layout_width="32dp"
+                android:layout_height="38dp"
+                android:padding="10dp"
+                android:src="@drawable/btn_cal_right"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/calWeekContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:orientation="horizontal">
+            <include layout="@layout/item_week"/>
+            <include layout="@layout/item_week"/>
+            <include layout="@layout/item_week"/>
+            <include layout="@layout/item_week"/>
+            <include layout="@layout/item_week"/>
+            <include layout="@layout/item_week"/>
+            <include layout="@layout/item_week"/>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="24dp"
+        android:text="오늘의 기분"
+        android:fontFamily="@font/spoqa_han_sans_neo_bold"
+        android:textSize="14dp"
+        android:textColor="@color/font_main_4A4A4A"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="158dp"
+        android:layout_marginBottom="27dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="18dp"
+        android:translationZ="4dp"
+        android:background="@drawable/bg_8_white"/>
 
-</LinearLayout>
+    </LinearLayout>
