@@ -35,8 +35,8 @@ public class CalendarFragment extends Fragment {
     private void setCalWeek(){
         String[] weekNM = {"일", "월", "화", "수", "목", "금", "토"};
         for(int i = 0; i < 7 ; i++){
-            TextView tv =  (TextView) binding.calWeekContainer.getChildAt(i);
-            tv.setText(weekNM[i]);
+            //TextView tv =  (TextView) binding.calWeekContainer.getChildAt(i);
+            //tv.setText(weekNM[i]);
         }
     }
 
