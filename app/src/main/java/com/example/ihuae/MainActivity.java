@@ -2,12 +2,15 @@ package com.example.ihuae;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
 import com.example.ihuae.R;
+import com.example.ihuae.Util.DBContract;
+import com.example.ihuae.Util.MainDBHelper;
 import com.example.ihuae.databinding.ActivityMainBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -16,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     public MainPagerAdapter adapter;
+    public MainDBHelper dbHelper;
 
     private int tab_on_ic_ids[] = {R.drawable.tab_on_ic_home, R.drawable.tab_on_ic_calendar, R.drawable.tab_on_ic_diary, R.drawable.tab_on_ic_chat};
     private int tab_off_ic_ids[] = {R.drawable.tab_off_ic_home, R.drawable.tab_off_ic_calendar, R.drawable.tab_off_ic_diary, R.drawable.tab_off_ic_chat};
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init(){
+        dbHelper = new MainDBHelper(this);
+
         adapter = new MainPagerAdapter(this.getSupportFragmentManager(), getLifecycle());
         binding.viewPager2.setCurrentItem(0);
 
@@ -66,5 +72,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        dbHelper.close();
+        super.onDestroy();
     }
 }

@@ -107,6 +107,7 @@ public final class DBContract {
     public static class DairyEntry implements BaseColumns {
         public static final String TABLE_NAME = "tbDairy";
         public static final String COLUMN_NAME_1 = "DateID";
+        public static final String COLUMN_NAME_5 = "Title";
         public static final String COLUMN_NAME_2 = "Content";
         public static final String COLUMN_NAME_3 = "RegDate";
         public static final String COLUMN_NAME_4 = "EdtDate";
@@ -116,6 +117,7 @@ public final class DBContract {
                         + " ("
                         + _ID + " INTEGER PRIMARY KEY,"
                         + COLUMN_NAME_1 + INTEGER + coma
+                        + COLUMN_NAME_5 + TEXT + coma
                         + COLUMN_NAME_2 + TEXT + coma
                         + COLUMN_NAME_3 + BLOB + coma
                         + COLUMN_NAME_4 + BLOB
