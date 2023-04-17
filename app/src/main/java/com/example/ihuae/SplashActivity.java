@@ -1,6 +1,7 @@
 package com.example.ihuae;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -45,6 +46,8 @@ public class SplashActivity extends AppCompatActivity {
         SharedPreferenceManager.setStartDay(this, new Date());
 
         MainDBHelper dbHelper = new MainDBHelper(this);
+
+        //
 
         //todo
         /***

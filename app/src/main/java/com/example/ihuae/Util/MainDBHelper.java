@@ -1,8 +1,12 @@
 package com.example.ihuae.Util;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainDBHelper extends SQLiteOpenHelper {
 
@@ -45,6 +49,24 @@ public class MainDBHelper extends SQLiteOpenHelper {
         String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + tableName;
         return SQL_DELETE_ENTRIES;
+    }
+
+    public boolean insertCalendarData(String tableNM, HashMap<String, Object> datas){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        ArrayList<String> keys = (ArrayList<String>) datas.keySet();
+        for (String key:keys) {
+            String type = datas.get(key).getClass().getName();
+            if(type.equals("Integer")) contentValues.put(key, (Integer) datas.get(key));
+            else if(type.equals("Date")) contentValues.put(key, (byte[]) datas.get(key));
+            else contentValues.put(key, (String) datas.get(key));
+        }
+        long result = db.insert(tableNM, null, contentValues);
+        if(result==-1)
+            return false;
+        else
+            return true;
+
     }
 
 }
