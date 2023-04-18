@@ -2,8 +2,10 @@ package com.example.ihuae.Util;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,22 +53,37 @@ public class MainDBHelper extends SQLiteOpenHelper {
         return SQL_DELETE_ENTRIES;
     }
 
-    public boolean insertCalendarData(String tableNM, HashMap<String, Object> datas){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        ArrayList<String> keys = (ArrayList<String>) datas.keySet();
-        for (String key:keys) {
-            String type = datas.get(key).getClass().getName();
-            if(type.equals("Integer")) contentValues.put(key, (Integer) datas.get(key));
-            else if(type.equals("Date")) contentValues.put(key, (byte[]) datas.get(key));
-            else contentValues.put(key, (String) datas.get(key));
-        }
-        long result = db.insert(tableNM, null, contentValues);
-        if(result==-1)
+    public boolean insertData(String tableNM, HashMap<String, Object> datas){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            ArrayList<String> keys = (ArrayList<String>) datas.keySet();
+            for (String key : keys) {
+                String type = datas.get(key).getClass().getName();
+                if (type.equals("Integer")) contentValues.put(key, (Integer) datas.get(key));
+                else if (type.equals("Date")) contentValues.put(key, (byte[]) datas.get(key));
+                else contentValues.put(key, (String) datas.get(key));
+            }
+            long result = db.insert(tableNM, null, contentValues);
+            if (result == -1)
+                return false;
+            else
+                return true;
+        }catch (Exception e){
+            Log.e("===============MainDBHelper insertData Exception================",e.getMessage());
             return false;
-        else
-            return true;
+        }
+    }
 
+    public Cursor selectData(String tableNM, String sql){
+        Cursor cursor = null;
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            cursor = db.rawQuery(sql, null);
+        }catch (Exception e){
+            Log.e("===============MainDBHelper selectData Exception================", e.getMessage());
+        }
+        return cursor;
     }
 
 }
