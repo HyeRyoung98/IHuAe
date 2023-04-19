@@ -1,16 +1,13 @@
 package com.example.ihuae;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ihuae.Util.DBContract;
 import com.example.ihuae.Util.MainDBHelper;
-import com.example.ihuae.Util.SharedPreferenceManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,15 +22,9 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        init();
-        createDB();
-        nextActivity();
+        createData();
+        nextActivity();     //todo createData() 가 끝나면 실행 되도록 수정
     }
-
-    private void init(){
-        dbHelper = new MainDBHelper(this);
-    }
-
 
     private void nextActivity(){
         Handler mHandler = new Handler();
@@ -52,34 +43,77 @@ public class SplashActivity extends AppCompatActivity {
         finish();
     }
 
-    private void createDB(){
+    private void createData(){
         //todo 시작일 저장 > 첫 접속 체크 플래그
         //SharedPreferenceManager.setStartDay(this, new Date());
-        setCalendarTable();
+        init();
+        setTables();
 
     }
 
-    private void setCalendarTable(){
+    private void init(){
+        dbHelper = new MainDBHelper(this);
+    }
+
+    private void setTables(){
         Calendar c = Calendar.getInstance();
         int cnt = 0;
-        while (cnt < 30){
+        while (cnt < 30) {
             cnt++;
             c.add(Calendar.DATE, 1);
             Date d = c.getTime();
 
             int dateID = Integer.parseInt(sdf.format(d));
+            setCalendarTable(c, dateID);
+            setEmoIcTable(dateID);
+            setEmoTxtTable(dateID);
+            setQnATable(dateID);
+            setGuideCardTable(dateID);
+        }
+    }
+
+    private void setCalendarTable(Calendar c, int dateID){
             int year = c.get(Calendar.YEAR);
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
 
-            HashMap<String, Object> calMap = new HashMap<>();
-            calMap.put(DBContract.CalendarEntry.COLUMN_NAME_1, dateID);
-            calMap.put(DBContract.CalendarEntry.COLUMN_NAME_2, year);
-            calMap.put(DBContract.CalendarEntry.COLUMN_NAME_3, month);
-            calMap.put(DBContract.CalendarEntry.COLUMN_NAME_4, day);
+            HashMap<String, Object> m = new HashMap<>();
+            m.put(DBContract.CalendarEntry.COLUMN_NAME_1, dateID);
+            m.put(DBContract.CalendarEntry.COLUMN_NAME_2, year);
+            m.put(DBContract.CalendarEntry.COLUMN_NAME_3, month);
+            m.put(DBContract.CalendarEntry.COLUMN_NAME_4, day);
 
-            dbHelper.insertData(DBContract.CalendarEntry.TABLE_NAME, calMap);
+            dbHelper.insertData(DBContract.CalendarEntry.TABLE_NAME, m);
         }
+
+    private void setEmoIcTable(int dateID){
+        HashMap<String, Object> m = new HashMap<>();
+        m.put(DBContract.EmoIcEntry.COLUMN_NAME_1, dateID);
+        m.put(DBContract.EmoIcEntry.COLUMN_NAME_2, "");
+        dbHelper.insertData(DBContract.EmoIcEntry.TABLE_NAME, m);
+    }
+
+    private void setEmoTxtTable(int dateID){
+        HashMap<String, Object> m = new HashMap<>();
+        m.put(DBContract.EmoTxtEntry.COLUMN_NAME_1, dateID);
+        m.put(DBContract.EmoTxtEntry.COLUMN_NAME_2, "");
+        dbHelper.insertData(DBContract.EmoTxtEntry.TABLE_NAME, m);
+    }
+
+    private void setQnATable(int dateID){
+        HashMap<String, Object> m = new HashMap<>();
+        m.put(DBContract.QnAEntry.COLUMN_NAME_1, dateID);
+        m.put(DBContract.QnAEntry.COLUMN_NAME_2, "");       //todo 질문 넣기, String 더미 제작 예정
+        m.put(DBContract.QnAEntry.COLUMN_NAME_3, "");
+        dbHelper.insertData(DBContract.QnAEntry.TABLE_NAME, m);
+    }
+
+    private void setGuideCardTable(int dateID){
+        HashMap<String, Object> m = new HashMap<>();
+        m.put(DBContract.GuideCardEntry.COLUMN_NAME_1, dateID);
+        m.put(DBContract.GuideCardEntry.COLUMN_NAME_2, "");     //todo 가이드 카드 내용 넣기, String 더미 제작 예정
+        m.put(DBContract.GuideCardEntry.COLUMN_NAME_3, "");     //todo 가이드 카드 이미지 이름 넣기, String 더미 제작 예정
+        dbHelper.insertData(DBContract.GuideCardEntry.TABLE_NAME, m);
     }
 }
 

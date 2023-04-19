@@ -23,6 +23,7 @@ public class MainDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DBContract.CalendarEntry.SQL_CREATE_ENTRIES);
         db.execSQL(DBContract.EmoIcEntry.SQL_CREATE_ENTRIES);
+        db.execSQL(DBContract.EmoTxtEntry.SQL_CREATE_ENTRIES);
         db.execSQL(DBContract.QnAEntry.SQL_CREATE_ENTRIES);
         db.execSQL(DBContract.GuideCardEntry.SQL_CREATE_ENTRIES);
         db.execSQL(DBContract.DairyEntry.SQL_CREATE_ENTRIES);
@@ -35,6 +36,7 @@ public class MainDBHelper extends SQLiteOpenHelper {
         // to simply to discard the data and start over
         db.execSQL(getTableDropSql(DBContract.CalendarEntry.TABLE_NAME));
         db.execSQL(getTableDropSql(DBContract.EmoIcEntry.TABLE_NAME));
+        db.execSQL(getTableDropSql(DBContract.EmoTxtEntry.TABLE_NAME));
         db.execSQL(getTableDropSql(DBContract.QnAEntry.TABLE_NAME));
         db.execSQL(getTableDropSql(DBContract.GuideCardEntry.TABLE_NAME));
         db.execSQL(getTableDropSql(DBContract.DairyEntry.TABLE_NAME));

@@ -37,12 +37,31 @@ public final class DBContract {
     /**
      * TABLE_NAME : tbEmoIc 감정 아이콘 테이블
      * 1. DateID 날짜ID
-     * 2. icName 아이콘명
+     * 2. EmoIC 아이콘명
      */
     public static class EmoIcEntry implements BaseColumns {
         public static final String TABLE_NAME = "tbEmoIc";
         public static final String COLUMN_NAME_1 = "DateID";
-        public static final String COLUMN_NAME_2 = "icName";
+        public static final String COLUMN_NAME_2 = "EmoIC";
+
+        public static final String SQL_CREATE_ENTRIES =
+                "CREATE TABLE " + TABLE_NAME
+                        + " ("
+                        + _ID + " INTEGER PRIMARY KEY,"
+                        + COLUMN_NAME_1 + INTEGER + coma
+                        + COLUMN_NAME_2 + TEXT
+                        + ")";
+    }
+
+    /**
+     * TABLE_NAME : tbEmoTxt 오늘의 기분 테이블
+     * 1. DateID 날짜ID
+     * 2. EmoTxt 오늘의 기분(텍스트)
+     */
+    public static class EmoTxtEntry implements BaseColumns {
+        public static final String TABLE_NAME = "tbEmoTxt";
+        public static final String COLUMN_NAME_1 = "DateID";
+        public static final String COLUMN_NAME_2 = "EmoTxt";
 
         public static final String SQL_CREATE_ENTRIES =
                 "CREATE TABLE " + TABLE_NAME
