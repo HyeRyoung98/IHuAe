@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ihuae.Util.DBContract;
 import com.example.ihuae.Util.MainDBHelper;
+import com.example.ihuae.Util.QuestionsStrings;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,6 +18,8 @@ import java.util.HashMap;
 public class SplashActivity extends AppCompatActivity {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
     private MainDBHelper dbHelper = null;
+    private QuestionsStrings qesStrings = new QuestionsStrings();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,16 +62,18 @@ public class SplashActivity extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         int cnt = 0;
         while (cnt < 30) {
-            cnt++;
             c.add(Calendar.DATE, 1);
             Date d = c.getTime();
-
             int dateID = Integer.parseInt(sdf.format(d));
+
             setCalendarTable(c, dateID);
             setEmoIcTable(dateID);
             setEmoTxtTable(dateID);
-            setQnATable(dateID);
-            setGuideCardTable(dateID);
+            setQnATable(dateID, cnt);
+            cnt++;
+            setGuideCardTable(dateID, cnt);
+
+
         }
     }
 
@@ -100,19 +105,20 @@ public class SplashActivity extends AppCompatActivity {
         dbHelper.insertData(DBContract.EmoTxtEntry.TABLE_NAME, m);
     }
 
-    private void setQnATable(int dateID){
+    private void setQnATable(int dateID, int cnt){
+        String qes = qesStrings.questions[cnt];
         HashMap<String, Object> m = new HashMap<>();
         m.put(DBContract.QnAEntry.COLUMN_NAME_1, dateID);
-        m.put(DBContract.QnAEntry.COLUMN_NAME_2, "");       //todo 질문 넣기, String 더미 제작 예정
+        m.put(DBContract.QnAEntry.COLUMN_NAME_2, qes);
         m.put(DBContract.QnAEntry.COLUMN_NAME_3, "");
         dbHelper.insertData(DBContract.QnAEntry.TABLE_NAME, m);
     }
 
-    private void setGuideCardTable(int dateID){
+    private void setGuideCardTable(int dateID, int cnt){
         HashMap<String, Object> m = new HashMap<>();
         m.put(DBContract.GuideCardEntry.COLUMN_NAME_1, dateID);
-        m.put(DBContract.GuideCardEntry.COLUMN_NAME_2, "");     //todo 가이드 카드 내용 넣기, String 더미 제작 예정
-        m.put(DBContract.GuideCardEntry.COLUMN_NAME_3, "");     //todo 가이드 카드 이미지 이름 넣기, String 더미 제작 예정
+        m.put(DBContract.GuideCardEntry.COLUMN_NAME_2, "");     //todo 가이드 카드 내용 넣기, 정말 필요한 지 검토.
+        m.put(DBContract.GuideCardEntry.COLUMN_NAME_3, "guide_card_day"+cnt);
         dbHelper.insertData(DBContract.GuideCardEntry.TABLE_NAME, m);
     }
 }
