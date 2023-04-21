@@ -16,6 +16,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainActivity extends AppCompatActivity {
+    public static int dDay = 0;
 
     private ActivityMainBinding binding;
     public MainPagerAdapter adapter;

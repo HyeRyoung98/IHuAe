@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SharedPreferenceManager {
-    public static SimpleDateFormat format = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
+    public static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 
     private static SharedPreferences getPreferences(Context context){
@@ -28,7 +28,7 @@ public class SharedPreferenceManager {
         String startDayString = prefs.getString("startDay", null);
         Date startDay = new Date();
         try {
-            startDay = format.parse(startDayString);
+            if(startDayString!=null) startDay = format.parse(startDayString);
         }catch (Exception e){
             Log.e("error", "[SharedPreferences - getStartDay] error");
         }

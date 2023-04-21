@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.ihuae.Util.DBContract;
 import com.example.ihuae.Util.MainDBHelper;
 import com.example.ihuae.Util.QuestionsStrings;
+import com.example.ihuae.Util.SharedPreferenceManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,8 +26,15 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        createData();
-        nextActivity();     //todo createData() 가 끝나면 실행 되도록 수정
+        Date startDay = SharedPreferenceManager.getStartDay(this);
+        if(startDay==null){
+            startDay = new Date();
+            createData(startDay);
+        }else {
+            long cal = new Date().getTime() - startDay.getTime();
+            MainActivity.dDay = (int) (cal / (24 * 60 * 60 * 1000));
+        }
+        nextActivity();
     }
 
     private void nextActivity(){
@@ -46,11 +54,10 @@ public class SplashActivity extends AppCompatActivity {
         finish();
     }
 
-    private void createData(){
-        //todo 시작일 저장 > 첫 접속 체크 플래그
-        //SharedPreferenceManager.setStartDay(this, new Date());
+    private void createData(Date startDate){
         init();
-        setTables();
+        SharedPreferenceManager.setStartDay(this, startDate);
+        setTables(startDate);
 
     }
 
@@ -58,8 +65,9 @@ public class SplashActivity extends AppCompatActivity {
         dbHelper = new MainDBHelper(this);
     }
 
-    private void setTables(){
+    private void setTables(Date startDate){
         Calendar c = Calendar.getInstance();
+        c.setTime(startDate);
         int cnt = 0;
         while (cnt < 30) {
             c.add(Calendar.DATE, 1);
