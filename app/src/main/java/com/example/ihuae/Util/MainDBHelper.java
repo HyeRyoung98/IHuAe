@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public class MainDBHelper extends SQLiteOpenHelper {
 
@@ -22,8 +22,8 @@ public class MainDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DBContract.CalendarEntry.SQL_CREATE_ENTRIES);
-        db.execSQL(DBContract.EmoIcEntry.SQL_CREATE_ENTRIES);
-        db.execSQL(DBContract.EmoTxtEntry.SQL_CREATE_ENTRIES);
+        db.execSQL(DBContract.IconEntry.SQL_CREATE_ENTRIES);
+        db.execSQL(DBContract.EmoEntry.SQL_CREATE_ENTRIES);
         db.execSQL(DBContract.QnAEntry.SQL_CREATE_ENTRIES);
         db.execSQL(DBContract.GuideCardEntry.SQL_CREATE_ENTRIES);
         db.execSQL(DBContract.DairyEntry.SQL_CREATE_ENTRIES);
@@ -35,8 +35,8 @@ public class MainDBHelper extends SQLiteOpenHelper {
         // This database is only a cache for online data, so its upgrade policy is
         // to simply to discard the data and start over
         db.execSQL(getTableDropSql(DBContract.CalendarEntry.TABLE_NAME));
-        db.execSQL(getTableDropSql(DBContract.EmoIcEntry.TABLE_NAME));
-        db.execSQL(getTableDropSql(DBContract.EmoTxtEntry.TABLE_NAME));
+        db.execSQL(getTableDropSql(DBContract.IconEntry.TABLE_NAME));
+        db.execSQL(getTableDropSql(DBContract.EmoEntry.TABLE_NAME));
         db.execSQL(getTableDropSql(DBContract.QnAEntry.TABLE_NAME));
         db.execSQL(getTableDropSql(DBContract.GuideCardEntry.TABLE_NAME));
         db.execSQL(getTableDropSql(DBContract.DairyEntry.TABLE_NAME));
@@ -59,12 +59,12 @@ public class MainDBHelper extends SQLiteOpenHelper {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
-            ArrayList<String> keys = (ArrayList<String>) datas.keySet();
+            Set<String> keys = datas.keySet();
             for (String key : keys) {
                 String type = datas.get(key).getClass().getName();
-                if (type.equals("Integer")) contentValues.put(key, (Integer) datas.get(key));
-                else if (type.equals("Date")) contentValues.put(key, (byte[]) datas.get(key));
-                else contentValues.put(key, (String) datas.get(key));
+                if (type.equals("java.lang.Integer")) contentValues.put(key, (Integer) datas.get(key));
+                else if (type.equals("java.util.Date")) contentValues.put(key, (byte[]) datas.get(key));
+                else contentValues.put(key, (String) datas.get(key));         //java.lang.String
             }
             long result = db.insert(tableNM, null, contentValues);
             if (result == -1)
@@ -77,7 +77,7 @@ public class MainDBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor selectData(String tableNM, String sql){
+    public Cursor selectData(String sql){
         Cursor cursor = null;
         try {
             SQLiteDatabase db = this.getReadableDatabase();

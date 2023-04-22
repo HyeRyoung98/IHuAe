@@ -26,7 +26,7 @@ public class SharedPreferenceManager {
     public static Date getStartDay(Context context) {
         SharedPreferences prefs = getPreferences(context);
         String startDayString = prefs.getString("startDay", null);
-        Date startDay = new Date();
+        Date startDay = null;
         try {
             if(startDayString!=null) startDay = format.parse(startDayString);
         }catch (Exception e){

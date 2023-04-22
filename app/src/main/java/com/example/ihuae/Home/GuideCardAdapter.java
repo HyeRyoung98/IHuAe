@@ -7,10 +7,15 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.ihuae.Item.GuideCardItem;
 import com.example.ihuae.databinding.ItemGuideCardBinding;
+
+import java.util.ArrayList;
 
 public class GuideCardAdapter extends RecyclerView.Adapter<GuideCardAdapter.itemVH> {
     private Context mContext;
+    public ArrayList<GuideCardItem> cardItems = new ArrayList<>();
     public GuideCardAdapter(Context context){
         this.mContext = context;
     }
@@ -19,16 +24,18 @@ public class GuideCardAdapter extends RecyclerView.Adapter<GuideCardAdapter.item
     @Override
     public itemVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new itemVH(ItemGuideCardBinding.inflate(LayoutInflater.from(mContext), parent, false));
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull itemVH holder, int position) {
+        holder.binding.ivGuideCard.setImageResource(cardItems.get(position).Image);
 
     }
 
     @Override
     public int getItemCount() {
-        return 6;
+        return cardItems.size();
     }
 
     public class itemVH extends RecyclerView.ViewHolder {

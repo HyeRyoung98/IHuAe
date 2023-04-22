@@ -26,7 +26,6 @@
                 android:id="@+id/tvDDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="D+4"
                 android:fontFamily="@font/spoqa_han_sans_neo_bold"
                 android:textColor="@color/main_purple_blue2_8291E6"
                 android:textSize="24dp"/>

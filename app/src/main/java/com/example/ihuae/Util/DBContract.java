@@ -35,14 +35,16 @@ public final class DBContract {
     }
 
     /**
-     * TABLE_NAME : tbEmoIc 감정 아이콘 테이블
-     * 1. DateID 날짜ID
-     * 2. EmoIC 아이콘명
+     * TABLE_NAME : tbIcon 감정 아이콘 테이블
+     * 1. IconID
+     * 2. EmoIC
+     * 3. IconGuide
      */
-    public static class EmoIcEntry implements BaseColumns {
-        public static final String TABLE_NAME = "tbEmoIc";
-        public static final String COLUMN_NAME_1 = "DateID";
-        public static final String COLUMN_NAME_2 = "EmoIC";
+    public static class IconEntry implements BaseColumns {
+        public static final String TABLE_NAME = "tbIcon";
+        public static final String COLUMN_NAME_1 = "EmoIC";
+        public static final String COLUMN_NAME_2 = "IconGuide";
+
 
         public static final String SQL_CREATE_ENTRIES =
                 "CREATE TABLE " + TABLE_NAME
@@ -54,21 +56,24 @@ public final class DBContract {
     }
 
     /**
-     * TABLE_NAME : tbEmoTxt 오늘의 기분 테이블
+     * TABLE_NAME : tbEmo 오늘의 기분 테이블
      * 1. DateID 날짜ID
-     * 2. EmoTxt 오늘의 기분(텍스트)
+     * 2. IconID 오늘의 기분 아이콘 ID
+     * 3. EmoTxt 오늘의 기분 텍스트
      */
-    public static class EmoTxtEntry implements BaseColumns {
-        public static final String TABLE_NAME = "tbEmoTxt";
+    public static class EmoEntry implements BaseColumns {
+        public static final String TABLE_NAME = "tbEmo";
         public static final String COLUMN_NAME_1 = "DateID";
-        public static final String COLUMN_NAME_2 = "EmoTxt";
+        public static final String COLUMN_NAME_2 = "IconID";
+        public static final String COLUMN_NAME_3 = "EmoTxt";
 
         public static final String SQL_CREATE_ENTRIES =
                 "CREATE TABLE " + TABLE_NAME
                         + " ("
                         + _ID + " INTEGER PRIMARY KEY,"
                         + COLUMN_NAME_1 + INTEGER + coma
-                        + COLUMN_NAME_2 + TEXT
+                        + COLUMN_NAME_2 + INTEGER + coma
+                        + COLUMN_NAME_3 + TEXT
                         + ")";
     }
 
@@ -98,13 +103,13 @@ public final class DBContract {
      * TABLE_NAME : tbGuideCard 가이드카드 테이블
      * 1. DateID 날짜ID
      * 2. Content 가이카드 내용
-     * 3. ImageName 가이드카드 이미지명
+     * 3. Image 가이드카드 이미지
      */
     public static class GuideCardEntry implements BaseColumns {
         public static final String TABLE_NAME = "tbGuideCard";
         public static final String COLUMN_NAME_1 = "DateID";
         public static final String COLUMN_NAME_2 = "Content";
-        public static final String COLUMN_NAME_3 = "ImageName";
+        public static final String COLUMN_NAME_3 = "Image";
 
         public static final String SQL_CREATE_ENTRIES =
                 "CREATE TABLE " + TABLE_NAME
@@ -112,7 +117,7 @@ public final class DBContract {
                         + _ID + " INTEGER PRIMARY KEY,"
                         + COLUMN_NAME_1 + INTEGER + coma
                         + COLUMN_NAME_2 + TEXT + coma
-                        + COLUMN_NAME_3 + TEXT
+                        + COLUMN_NAME_3 + INTEGER
                         + ")";
     }
 
