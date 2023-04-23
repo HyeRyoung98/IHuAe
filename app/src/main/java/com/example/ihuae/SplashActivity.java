@@ -139,6 +139,7 @@ public class SplashActivity extends AppCompatActivity {
             HashMap<String, Object> m = new HashMap<>();
             m.put(DBContract.IconEntry.COLUMN_NAME_1, arrayItems.emoIcons[i]);
             m.put(DBContract.IconEntry.COLUMN_NAME_2, arrayItems.emoGuides[i]);
+            m.put(DBContract.IconEntry.COLUMN_NAME_3, arrayItems.iconName[i]);
             boolean isSuccess = dbHelper.insertData(DBContract.IconEntry.TABLE_NAME, m);
             if(isSuccess) Log.e("===============Success setIconTable================", "IconID = " + i);
             else Log.e("===============Fail setIconTable================", "IconID = " + i);

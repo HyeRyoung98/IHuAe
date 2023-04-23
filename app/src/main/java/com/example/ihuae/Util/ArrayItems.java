@@ -83,4 +83,6 @@ public class ArrayItems {
             ,"오늘의 기분은 만족스러워요"
             ,"오늘의 기분은 공허해요"
     };
+
+    public String[] iconName = {"평온", "무덤덤", "슬픔", "분노", "만족", "공허함" };
 }

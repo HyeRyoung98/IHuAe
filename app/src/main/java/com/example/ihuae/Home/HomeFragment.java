@@ -18,9 +18,12 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.ihuae.Item.GuideCardItem;
 import com.example.ihuae.MainActivity;
 import com.example.ihuae.R;
+import com.example.ihuae.Util.ArrayItems;
 import com.example.ihuae.Util.DBContract;
 import com.example.ihuae.Util.MainDBHelper;
 import com.example.ihuae.databinding.FragmentHomeBinding;
+
+import java.util.HashMap;
 
 public class HomeFragment extends Fragment {
 
@@ -33,9 +36,7 @@ public class HomeFragment extends Fragment {
     private int emoIconID = -1;
     private String iconGuide = "";
     private String todayQuestion = "";
-
-    private int emoImg[] = {R.drawable.ic_emotion_calmness, R.drawable.ic_emotion_dullness, R.drawable.ic_emotion_sadness
-            , R.drawable.ic_emotion_anger, R.drawable.ic_emotion_satisfied, R.drawable.ic_emotion_emptiness};
+    private ArrayItems arrayItems = new ArrayItems();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(LayoutInflater.from(getContext()), container, false);
@@ -79,24 +80,6 @@ public class HomeFragment extends Fragment {
         adapter.notifyDataSetChanged();
         c.close();
 
-        //오늘의 기분 가져오기
-        sql = "SELECT A." + DBContract.EmoEntry.COLUMN_NAME_2
-                + " , B." + DBContract.IconEntry.COLUMN_NAME_1
-                + " , B." + DBContract.IconEntry.COLUMN_NAME_2
-                + " , A." + DBContract.EmoEntry.COLUMN_NAME_3
-                + " FROM " + DBContract.EmoEntry.TABLE_NAME + " A , " + DBContract.IconEntry.TABLE_NAME + " B"
-                + " WHERE 1=1"
-                + " AND A." + DBContract.EmoEntry._ID + " = " + MainActivity.dDay
-                + " AND B." + DBContract.IconEntry._ID + " = A." + DBContract.EmoEntry.COLUMN_NAME_2;
-        c = dbHelper.selectData(sql);
-        while (c.moveToNext()){
-            emoIconID = c.getInt(0);
-            emoIcon = c.getInt(1);
-            iconGuide = c.getString(2);
-            emoText = c.getString(3);
-        }
-        c.close();
-
         //하루 문답 가져오기
         sql = "SELECT " + DBContract.QnAEntry.COLUMN_NAME_2
                 + " FROM " + DBContract.QnAEntry.TABLE_NAME
@@ -106,10 +89,56 @@ public class HomeFragment extends Fragment {
             todayQuestion = c.getString(0);
         }
         c.close();
+
+        //오늘의 기분 가져오기
+        getEmoData();
+    }
+
+    private void getEmoData(){
+        //오늘의 기분 가져오기
+        String sql = "SELECT " + DBContract.EmoEntry.TABLE_NAME + "." + DBContract.EmoEntry.COLUMN_NAME_2
+                + " , " + DBContract.IconEntry.TABLE_NAME + "." + DBContract.IconEntry.COLUMN_NAME_1
+                + " , " + DBContract.IconEntry.TABLE_NAME + "." + DBContract.IconEntry.COLUMN_NAME_2
+                + " , " + DBContract.EmoEntry.TABLE_NAME + "." + DBContract.EmoEntry.COLUMN_NAME_3
+                + " FROM " + DBContract.EmoEntry.TABLE_NAME
+                + " JOIN " + DBContract.IconEntry.TABLE_NAME
+                + " ON " + DBContract.IconEntry.TABLE_NAME + "." + DBContract.IconEntry._ID + " = (" + DBContract.EmoEntry.TABLE_NAME + "." + DBContract.EmoEntry.COLUMN_NAME_2 + " + 1 )"
+                + " WHERE 1=1"
+                + " AND " + DBContract.EmoEntry.TABLE_NAME + "." + DBContract.EmoEntry._ID + " = " + MainActivity.dDay;
+        Cursor c = dbHelper.selectData(sql);
+        while (c.moveToNext()){
+            emoIconID = c.getInt(0);
+            emoIcon = c.getInt(1);
+            iconGuide = c.getString(2);
+            emoText = c.getString(3);
+        }
+        c.close();
+
+    }
+
+    private void updateEmoData(){
+        //오늘의 기분 가져오기
+        String sql = "UPDATE " + DBContract.EmoEntry.TABLE_NAME
+                + " SET " + DBContract.EmoEntry.COLUMN_NAME_2 + " = " + emoIconID;
+        if(!emoText.isEmpty()) sql += " , " + DBContract.EmoEntry.COLUMN_NAME_3 + " = '" + emoText + "'";
+        sql += " WHERE " + DBContract.EmoEntry.TABLE_NAME + "." + DBContract.EmoEntry._ID + " = " + MainActivity.dDay;
+        Cursor c = dbHelper.selectData(sql);
+        while (c.moveToNext()){
+            emoIconID = c.getInt(0);
+            emoIcon = c.getInt(1);
+            iconGuide = c.getString(2);
+            emoText = c.getString(3);
+        }
+        c.close();
     }
 
     private void setUI(){
         binding.tvDDay.setText("D+"+MainActivity.dDay);
+        binding.tvTodayQue.setText(todayQuestion);
+        if( emoIconID > -1 ) {
+            binding.ivEmo.setImageDrawable(getContext().getDrawable(arrayItems.emoIcons[emoIconID]));
+            binding.tvEmo.setText(iconGuide);
+        }
         binding.guideCardViewPager.setCurrentItem(adapter.getItemCount()-1);
         setBtnVisible();
         dialog = new WriteEmoDialog(getContext(), emoIcon, emoText);
@@ -119,10 +148,14 @@ public class HomeFragment extends Fragment {
         dialog.setOnEmoDialogListener(new WriteEmoDialog.OnEmoDialogListener() {
             @Override
             public void onResist(int status, String contents) {
-                if(status>-1) binding.ivEmo.setImageDrawable(getContext().getDrawable(emoImg[status]));
-                if(!contents.trim().isEmpty()) binding.tvEmo.setText(contents);
-                //dayVO.status = status;
-                //dayVO.content = contents;
+                emoIconID = status;
+                emoText = contents;
+                updateEmoData();
+                getEmoData();
+                if(status>-1) {
+                    binding.ivEmo.setImageDrawable(getContext().getDrawable(arrayItems.emoIcons[status]));
+                    binding.tvEmo.setText(iconGuide);
+                }
             }
         });
         binding.btnWriteEmo.setOnClickListener(v -> {
@@ -155,4 +188,13 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getEmoData();
+        if(emoIconID>-1) {
+            binding.ivEmo.setImageDrawable(getContext().getDrawable(arrayItems.emoIcons[emoIconID]));
+            binding.tvEmo.setText(iconGuide);
+        }
+    }
 }

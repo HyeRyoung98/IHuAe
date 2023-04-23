@@ -39,11 +39,13 @@ public final class DBContract {
      * 1. IconID
      * 2. EmoIC
      * 3. IconGuide
+     * 4. IconName
      */
     public static class IconEntry implements BaseColumns {
         public static final String TABLE_NAME = "tbIcon";
         public static final String COLUMN_NAME_1 = "EmoIC";
         public static final String COLUMN_NAME_2 = "IconGuide";
+        public static final String COLUMN_NAME_3 = "IconName";
 
 
         public static final String SQL_CREATE_ENTRIES =
@@ -51,7 +53,8 @@ public final class DBContract {
                         + " ("
                         + _ID + " INTEGER PRIMARY KEY,"
                         + COLUMN_NAME_1 + INTEGER + coma
-                        + COLUMN_NAME_2 + TEXT
+                        + COLUMN_NAME_2 + TEXT + coma
+                        + COLUMN_NAME_3 + TEXT
                         + ")";
     }
 
