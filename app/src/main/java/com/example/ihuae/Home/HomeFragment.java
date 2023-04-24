@@ -123,12 +123,6 @@ public class HomeFragment extends Fragment {
         if(!emoText.isEmpty()) sql += " , " + DBContract.EmoEntry.COLUMN_NAME_3 + " = '" + emoText + "'";
         sql += " WHERE " + DBContract.EmoEntry.TABLE_NAME + "." + DBContract.EmoEntry._ID + " = " + MainActivity.dDay;
         Cursor c = dbHelper.selectData(sql);
-        while (c.moveToNext()){
-            emoIconID = c.getInt(0);
-            emoIcon = c.getInt(1);
-            iconGuide = c.getString(2);
-            emoText = c.getString(3);
-        }
         c.close();
     }
 

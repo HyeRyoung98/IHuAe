@@ -146,8 +146,8 @@ public final class DBContract {
                         + COLUMN_NAME_1 + INTEGER + coma
                         + COLUMN_NAME_5 + TEXT + coma
                         + COLUMN_NAME_2 + TEXT + coma
-                        + COLUMN_NAME_3 + BLOB + coma
-                        + COLUMN_NAME_4 + BLOB
+                        + COLUMN_NAME_3 + TEXT + coma
+                        + COLUMN_NAME_4 + TEXT
                         + ")";
     }
 
@@ -171,8 +171,8 @@ public final class DBContract {
                         + _ID + " INTEGER PRIMARY KEY,"
                         + COLUMN_NAME_1 + INTEGER + coma
                         + COLUMN_NAME_2 + TEXT + coma
-                        + COLUMN_NAME_3 + BLOB + coma
-                        + COLUMN_NAME_4 + BLOB
+                        + COLUMN_NAME_3 + TEXT + coma
+                        + COLUMN_NAME_4 + TEXT
                         + ")";
     }
 
